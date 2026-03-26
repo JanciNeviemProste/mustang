@@ -64,6 +64,7 @@ export function StepSummary({
               onClick={() => {
                 if (loc.contactOnly) {
                   setShowContactMsg(true);
+                  onPickupChange("");
                   return;
                 }
                 setShowContactMsg(false);

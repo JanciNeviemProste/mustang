@@ -58,14 +58,21 @@ export function StepDate({
       pkg.durationHours
     ).toISOString();
 
+    const controller = new AbortController();
     setChecking(true);
     fetch(
-      `/api/bookings/availability?start=${encodeURIComponent(startISO)}&end=${encodeURIComponent(endISO)}`
+      `/api/bookings/availability?start=${encodeURIComponent(startISO)}&end=${encodeURIComponent(endISO)}`,
+      { signal: controller.signal }
     )
       .then((r) => r.json())
       .then((data) => setAvailable(data.available))
-      .catch(() => setAvailable(null))
+      .catch((err) => {
+        if (err instanceof DOMException && err.name === "AbortError") return;
+        setAvailable(null);
+      })
       .finally(() => setChecking(false));
+
+    return () => controller.abort();
   }, [startDate, startTime, pkg.durationHours]);
 
   const today = new Date();

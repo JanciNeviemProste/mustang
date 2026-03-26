@@ -81,6 +81,17 @@ CREATE TABLE blocked_dates (
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
+-- Row Level Security
+ALTER TABLE customers ENABLE ROW LEVEL SECURITY;
+ALTER TABLE bookings ENABLE ROW LEVEL SECURITY;
+ALTER TABLE blocked_dates ENABLE ROW LEVEL SECURITY;
+
+-- Anon users can only read blocked_dates (for availability calendar)
+CREATE POLICY "Public read blocked_dates" ON blocked_dates
+  FOR SELECT USING (true);
+
+-- All other access requires service_role key (API routes)
+
 -- Indexy
 CREATE INDEX idx_bookings_dates ON bookings (start_date, end_date);
 CREATE INDEX idx_bookings_status ON bookings (status);

@@ -10,22 +10,16 @@ async function generateBookingNumber(
   const prefix = `MUS-${year}-`;
 
   if (!supabase) {
-    return `${prefix}${String(Math.floor(Math.random() * 999) + 1).padStart(3, "0")}`;
+    return `${prefix}${String(Math.floor(Math.random() * 9999) + 1).padStart(4, "0")}`;
   }
 
-  const { data } = await supabase
+  const { count } = await supabase
     .from("bookings")
-    .select("booking_number")
-    .like("booking_number", `${prefix}%`)
-    .order("booking_number", { ascending: false })
-    .limit(1);
+    .select("id", { count: "exact", head: true })
+    .like("booking_number", `${prefix}%`);
 
-  if (data && data.length > 0) {
-    const lastNum = parseInt(data[0].booking_number.replace(prefix, ""), 10);
-    return `${prefix}${String(lastNum + 1).padStart(3, "0")}`;
-  }
-
-  return `${prefix}001`;
+  const nextNum = (count ?? 0) + 1;
+  return `${prefix}${String(nextNum).padStart(4, "0")}`;
 }
 
 export async function POST(request: NextRequest) {
@@ -69,7 +63,7 @@ export async function POST(request: NextRequest) {
     .select("id")
     .eq("email", data.email)
     .limit(1)
-    .single();
+    .maybeSingle();
 
   if (existingCustomer) {
     customerId = existingCustomer.id;

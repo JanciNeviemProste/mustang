@@ -1,5 +1,19 @@
 import { z } from "zod";
 
+function isValidDate(val: string): boolean {
+  const d = new Date(val);
+  return !isNaN(d.getTime());
+}
+
+function ageInYears(dateStr: string): number {
+  const date = new Date(dateStr);
+  const today = new Date();
+  const years = today.getFullYear() - date.getFullYear();
+  const m = today.getMonth() - date.getMonth();
+  const d = today.getDate() - date.getDate();
+  return m < 0 || (m === 0 && d < 0) ? years - 1 : years;
+}
+
 export const personalInfoSchema = z.object({
   fullName: z
     .string()
@@ -12,40 +26,23 @@ export const personalInfoSchema = z.object({
       /^\+421\s?\d{3}\s?\d{3}\s?\d{3}$/,
       "Zadajte slovenské číslo vo formáte +421 XXX XXX XXX"
     ),
-  dateOfBirth: z.string().min(1, "Dátum narodenia je povinný").refine(
-    (val) => {
-      const birth = new Date(val);
-      const today = new Date();
-      const age = today.getFullYear() - birth.getFullYear();
-      const monthDiff = today.getMonth() - birth.getMonth();
-      const dayDiff = today.getDate() - birth.getDate();
-      const actualAge =
-        monthDiff < 0 || (monthDiff === 0 && dayDiff < 0) ? age - 1 : age;
-      return actualAge >= 24;
-    },
-    { message: "Minimálny vek vodiča je 24 rokov" }
-  ),
+  dateOfBirth: z
+    .string()
+    .min(1, "Dátum narodenia je povinný")
+    .refine((val) => isValidDate(val), { message: "Neplatný formát dátumu" })
+    .refine((val) => isValidDate(val) && ageInYears(val) >= 24, {
+      message: "Minimálny vek vodiča je 24 rokov",
+    }),
   driversLicenseNumber: z
     .string()
     .min(1, "Číslo vodičského preukazu je povinné"),
   driversLicenseSince: z
     .string()
     .min(1, "Dátum vydania VP je povinný")
-    .refine(
-      (val) => {
-        const issued = new Date(val);
-        const today = new Date();
-        const years = today.getFullYear() - issued.getFullYear();
-        const monthDiff = today.getMonth() - issued.getMonth();
-        const dayDiff = today.getDate() - issued.getDate();
-        const actualYears =
-          monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)
-            ? years - 1
-            : years;
-        return actualYears >= 3;
-      },
-      { message: "Vodičský preukaz musíte vlastniť minimálne 3 roky" }
-    ),
+    .refine((val) => isValidDate(val), { message: "Neplatný formát dátumu" })
+    .refine((val) => isValidDate(val) && ageInYears(val) >= 3, {
+      message: "Vodičský preukaz musíte vlastniť minimálne 3 roky",
+    }),
   address: z.string(),
 });
 
@@ -58,9 +55,15 @@ export const bookingSubmissionSchema = z.object({
   fullName: z.string().min(3),
   email: z.string().email(),
   phone: z.string().min(1),
-  dateOfBirth: z.string().min(1),
+  dateOfBirth: z
+    .string()
+    .min(1)
+    .refine((v) => isValidDate(v) && ageInYears(v) >= 24, "Min. vek 24"),
   driversLicenseNumber: z.string().min(1),
-  driversLicenseSince: z.string().min(1),
+  driversLicenseSince: z
+    .string()
+    .min(1)
+    .refine((v) => isValidDate(v) && ageInYears(v) >= 3, "Min. 3 roky VP"),
   address: z.string().default(""),
   pickupLocation: z.string().min(1),
   pickupFee: z.number().min(0),
