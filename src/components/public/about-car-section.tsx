@@ -103,6 +103,7 @@ export function AboutCarSection() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            aria-hidden="true"
             className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900"
           >
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-zinc-600">

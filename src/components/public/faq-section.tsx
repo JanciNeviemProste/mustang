@@ -60,10 +60,10 @@ export function FaqSection() {
         </div>
 
         <Accordion multiple={false}>
-          {faqItems.map((item, i) => (
+          {faqItems.map((item) => (
             <AccordionItem
-              key={i}
-              value={String(i)}
+              key={item.question}
+              value={item.question}
               className="border-b border-zinc-800"
             >
               <AccordionTrigger className="py-5 text-base font-medium text-zinc-200 hover:text-gold hover:no-underline">

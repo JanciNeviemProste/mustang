@@ -6,7 +6,16 @@ import { Button } from "@/components/ui/button";
 import { Check, Star } from "lucide-react";
 import { SectionWrapper } from "./section-wrapper";
 
-const packages = [
+interface Package {
+  name: string;
+  price: string;
+  kmIncluded: string;
+  kmPerDay: string | null;
+  highlighted?: boolean;
+  features: string[];
+}
+
+const packages: Package[] = [
   {
     name: "6 hodín",
     price: "84,90",

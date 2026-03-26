@@ -9,7 +9,7 @@ const contactInfo = [
     icon: MapPin,
     label: "Adresa",
     value: "Sila 68, Nové Sady pri Nitre",
-    href: "https://maps.google.com/?q=Sila+68+Nové+Sady",
+    href: "https://maps.google.com/?q=Sila+68+Nov%C3%A9+Sady",
   },
   {
     icon: Phone,

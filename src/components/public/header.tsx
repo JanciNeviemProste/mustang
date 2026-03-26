@@ -59,6 +59,8 @@ export function Header() {
             onClick={() => setMobileOpen(!mobileOpen)}
             className="text-zinc-300 md:hidden"
             aria-label="Menu"
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-nav"
           >
             {mobileOpen ? <X className="size-6" /> : <Menu className="size-6" />}
           </button>
@@ -73,7 +75,7 @@ export function Header() {
             exit={{ opacity: 0, height: 0 }}
             className="overflow-hidden bg-zinc-950/95 backdrop-blur-md md:hidden"
           >
-            <nav className="flex flex-col gap-4 px-4 py-6">
+            <nav id="mobile-nav" aria-label="Mobilná navigácia" className="flex flex-col gap-4 px-4 py-6">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
