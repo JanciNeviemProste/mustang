@@ -31,15 +31,15 @@ export function Footer() {
               href="/"
               className="font-heading text-2xl font-bold text-gold"
             >
-              ZAREW
+              USA MUSTANG
             </Link>
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-zinc-400">
               Prémiový prenájom Ford Mustang GT 5.0 V8 v Nitre. Zážitok, na
               ktorý sa nezabúda.
             </p>
             <div className="mt-4 text-sm text-zinc-500">
-              <p>ZAREW car rental (MoSy s.r.o.)</p>
-              <p>Sila 68, Nové Sady pri Nitre</p>
+              <p>USA MUSTANG car rental (MoSy s.r.o.)</p>
+              <p>Trnava</p>
             </div>
           </div>
 
@@ -76,7 +76,7 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-zinc-800 pt-8 md:flex-row">
           <p className="text-xs text-zinc-600">
-            &copy; {new Date().getFullYear()} ZAREW car rental (MoSy s.r.o.).
+            &copy; {new Date().getFullYear()} USA MUSTANG car rental (MoSy s.r.o.).
             Všetky práva vyhradené.
           </p>
           <div className="flex items-center gap-4">
@@ -88,10 +88,10 @@ export function Footer() {
             </a>
             <span className="text-zinc-700">|</span>
             <a
-              href="mailto:info@zarew.sk"
+              href="mailto:info@mustang.sk"
               className="text-xs text-zinc-500 transition-colors hover:text-gold"
             >
-              info@zarew.sk
+              info@mustang.sk
             </a>
           </div>
         </div>

@@ -42,7 +42,7 @@ const faqItems = [
   {
     question: "Kde si môžem auto vyzdvihnúť?",
     answer:
-      "Základné miesto vyzdvihnutia je naša báza v Sila 68, Nové Sady pri Nitre — bez príplatku. Pristavenie na Tesco Nitra je za +30 €, na ľubovoľnú adresu v Nitre za +60 €. Iné miesta vrátane letiska Bratislava sú možné za individuálnu cenu.",
+      "Základné miesto vyzdvihnutia je v Trnave — bez príplatku. Pristavenie na inú adresu v Trnave je za +30 €, na ľubovoľnú adresu mimo Trnavy za +60 €. Iné miesta vrátane letiska Bratislava sú možné za individuálnu cenu.",
   },
 ];
 

@@ -8,8 +8,8 @@ const contactInfo = [
   {
     icon: MapPin,
     label: "Adresa",
-    value: "Sila 68, Nové Sady pri Nitre",
-    href: "https://maps.google.com/?q=Sila+68+Nov%C3%A9+Sady",
+    value: "Trnava",
+    href: "https://maps.google.com/?q=Trnava+Slovensko",
   },
   {
     icon: Phone,
@@ -20,8 +20,8 @@ const contactInfo = [
   {
     icon: Mail,
     label: "Email",
-    value: "info@zarew.sk",
-    href: "mailto:info@zarew.sk",
+    value: "info@mustang.sk",
+    href: "mailto:info@mustang.sk",
   },
   {
     icon: Clock,
@@ -99,15 +99,15 @@ export function ContactSection() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="mt-10 overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900"
         >
-          <div className="flex h-64 items-center justify-center text-zinc-600 md:h-80">
-            <div className="text-center">
-              <MapPin className="mx-auto mb-2 size-8 text-zinc-600" />
-              <p className="text-sm">Google Maps</p>
-              <p className="text-xs text-zinc-700">
-                Sila 68, Nové Sady pri Nitre
-              </p>
-            </div>
-          </div>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d84544.68!2d17.536!3d48.3774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476b4a49d0f63bfb%3A0x400f7d1c6975f10!2sTrnava!5e0!3m2!1ssk!2ssk!4v1"
+            className="h-64 w-full md:h-80"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Mapa — Trnava"
+          />
         </motion.div>
       </div>
     </SectionWrapper>

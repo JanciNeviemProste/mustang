@@ -33,7 +33,7 @@ export function Header() {
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-8">
         <Link href="/" className="font-heading text-xl font-bold tracking-wide text-gold">
-          ZAREW
+          USA MUSTANG
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">

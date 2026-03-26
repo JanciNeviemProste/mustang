@@ -1,4 +1,4 @@
-# ZAREW Mustang Rental — Project Rules
+# USA MUSTANG Rental — Project Rules
 
 ## Tech Stack
 - **Framework:** Next.js 15 (App Router) + TypeScript strict

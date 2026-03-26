@@ -15,7 +15,7 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "ZAREW | Prenájom Ford Mustang GT 5.0 V8 | Nitra",
+  title: "USA MUSTANG | Prenájom Ford Mustang GT 5.0 V8 | Nitra",
   description:
     "Prémiový prenájom Ford Mustang GT 5.0 V8 v Nitre. 422 koní, 0-100 pod 5 sekúnd. Svadby, darčeky, fotenie, firemné akcie. Rezervujte online.",
   keywords: [
@@ -27,12 +27,12 @@ export const metadata: Metadata = {
     "autopožičovňa nitra luxusné autá",
   ],
   openGraph: {
-    title: "ZAREW | Prenájom Ford Mustang GT 5.0 V8",
+    title: "USA MUSTANG | Prenájom Ford Mustang GT 5.0 V8",
     description:
       "Zažite silu americkej legendy. Prémiový prenájom Ford Mustang GT v Nitre.",
     locale: "sk_SK",
     type: "website",
-    siteName: "ZAREW car rental",
+    siteName: "USA MUSTANG car rental",
   },
 };
 

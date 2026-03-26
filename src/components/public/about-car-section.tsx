@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Gauge, Zap, Cog, Palette } from "lucide-react";
 import { SectionWrapper } from "./section-wrapper";
@@ -97,22 +98,21 @@ export function AboutCarSection() {
             </div>
           </div>
 
-          {/* Right — image placeholder */}
+          {/* Right — car image */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            aria-hidden="true"
-            className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900"
+            className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-zinc-800"
           >
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-zinc-600">
-              <div className="h-16 w-16 rounded-full border-2 border-dashed border-zinc-700 flex items-center justify-center">
-                <Palette className="size-8 text-zinc-600" />
-              </div>
-              <p className="text-sm">Foto Ford Mustang GT</p>
-              <p className="text-xs text-zinc-700">1200 x 900 px odporúčané</p>
-            </div>
+            <Image
+              src="/images/mustang-1.webp"
+              alt="Ford Mustang GT 5.0 V8 — predný pohľad"
+              fill
+              className="object-cover object-center"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
             {/* Decorative gold corner accent */}
             <div className="absolute -bottom-1 -right-1 h-24 w-24 rounded-tl-3xl border-l-2 border-t-2 border-gold/20" />
           </motion.div>
