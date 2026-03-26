@@ -16,8 +16,8 @@ const contactInfo = [
   {
     icon: Phone,
     label: "Telefón",
-    value: "+421 917 753 171",
-    href: "tel:+421917753171",
+    value: "+421 905 886 657",
+    href: "tel:+421905886657",
   },
   {
     icon: Mail,
@@ -134,12 +134,12 @@ export function ContactSection() {
                 <ArrowRight className="size-4" />
               </Button>
             </Link>
-            <a href="tel:+421917753171">
+            <a href="tel:+421905886657">
               <Button
                 variant="outline"
                 className="h-12 border-zinc-700 px-8 text-base text-zinc-300 hover:border-gold/50 hover:text-white"
               >
-                Zavolať +421 917 753 171
+                Zavolať +421 905 886 657
               </Button>
             </a>
           </div>
