@@ -36,7 +36,7 @@ export function Header() {
           USA MUSTANG
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav aria-label="Hlavná navigácia" className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => (
             <a
               key={link.href}

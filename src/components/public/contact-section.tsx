@@ -1,7 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { SectionWrapper } from "./section-wrapper";
 
 const contactInfo = [
@@ -100,14 +102,47 @@ export function ContactSection() {
           className="mt-10 overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900"
         >
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d84544.68!2d17.536!3d48.3774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476b4a49d0f63bfb%3A0x400f7d1c6975f10!2sTrnava!5e0!3m2!1ssk!2ssk!4v1"
+            src="https://maps.google.com/maps?q=Trnava,+Slovensko&t=&z=13&ie=UTF8&iwloc=&output=embed"
             className="h-64 w-full md:h-80"
             style={{ border: 0 }}
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
+            sandbox="allow-scripts allow-same-origin"
             title="Mapa — Trnava"
           />
+        </motion.div>
+
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="mt-12 rounded-2xl border border-gold/20 bg-gold/5 px-6 py-10 text-center md:px-12"
+        >
+          <h3 className="font-heading text-2xl font-bold text-white md:text-3xl">
+            Pripravený na nezabudnuteľný zážitok?
+          </h3>
+          <p className="mx-auto mt-3 max-w-lg text-zinc-400">
+            Iba 1 vozidlo — rezervujte si svoj termín ešte dnes, kým je voľný.
+          </p>
+          <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+            <Link href="/rezervacia">
+              <Button className="h-12 gap-2 bg-gold px-8 text-base font-semibold text-zinc-950 shadow-lg shadow-gold/20 hover:bg-gold-light">
+                Rezervovať teraz
+                <ArrowRight className="size-4" />
+              </Button>
+            </Link>
+            <a href="tel:+421917753171">
+              <Button
+                variant="outline"
+                className="h-12 border-zinc-700 px-8 text-base text-zinc-300 hover:border-gold/50 hover:text-white"
+              >
+                Zavolať +421 917 753 171
+              </Button>
+            </a>
+          </div>
         </motion.div>
       </div>
     </SectionWrapper>

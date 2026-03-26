@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { SectionWrapper } from "./section-wrapper";
@@ -21,17 +21,37 @@ export function GallerySection() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const openLightbox = (i: number) => setLightboxIndex(i);
-  const closeLightbox = () => setLightboxIndex(null);
+  const closeLightbox = useCallback(() => setLightboxIndex(null), []);
 
-  const goNext = () => {
-    if (lightboxIndex === null) return;
-    setLightboxIndex((lightboxIndex + 1) % images.length);
-  };
+  const goNext = useCallback(() => {
+    setLightboxIndex((prev) =>
+      prev === null ? null : (prev + 1) % images.length
+    );
+  }, []);
 
-  const goPrev = () => {
+  const goPrev = useCallback(() => {
+    setLightboxIndex((prev) =>
+      prev === null ? null : (prev - 1 + images.length) % images.length
+    );
+  }, []);
+
+  useEffect(() => {
     if (lightboxIndex === null) return;
-    setLightboxIndex((lightboxIndex - 1 + images.length) % images.length);
-  };
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowRight") goNext();
+      if (e.key === "ArrowLeft") goPrev();
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [lightboxIndex, closeLightbox, goNext, goPrev]);
 
   return (
     <>
@@ -55,6 +75,7 @@ export function GallerySection() {
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.4, delay: i * 0.05 }}
                 onClick={() => openLightbox(i)}
+                aria-label={`Otvoriť: ${img.alt}`}
                 className="group relative aspect-[2/1] overflow-hidden rounded-lg border border-zinc-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
               >
                 <Image
@@ -75,6 +96,9 @@ export function GallerySection() {
       <AnimatePresence>
         {lightboxIndex !== null && (
           <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Galéria fotiek"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -83,7 +107,10 @@ export function GallerySection() {
           >
             {/* Close button */}
             <button
-              onClick={closeLightbox}
+              onClick={(e) => {
+                e.stopPropagation();
+                closeLightbox();
+              }}
               className="absolute right-4 top-4 z-10 rounded-full bg-zinc-800/80 p-2 text-zinc-300 transition-colors hover:bg-zinc-700 hover:text-white"
               aria-label="Zavrieť galériu"
             >

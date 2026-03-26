@@ -34,7 +34,7 @@ export function Footer() {
               USA MUSTANG
             </Link>
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-zinc-400">
-              Prémiový prenájom Ford Mustang GT 5.0 V8 v Nitre. Zážitok, na
+              Prémiový prenájom Ford Mustang GT 5.0 V8 v Trnave. Zážitok, na
               ktorý sa nezabúda.
             </p>
             <div className="mt-4 text-sm text-zinc-500">
